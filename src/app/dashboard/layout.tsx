@@ -1,6 +1,5 @@
 import { Sidebar } from "@/components";
 
-
 export default function DashboardLayout({
   children,
 }: {
