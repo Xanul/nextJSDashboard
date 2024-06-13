@@ -41,21 +41,21 @@ export const Sidebar = () => {
       <div id="logo" className="my-4 px-6">
         <h1 className="text-lg flex items-center md:text-2xl font-bold text-white">
           <IoLogoReact className="mr-2" />
-          <span>Dash</span>
-          <span className="text-blue-500">8</span>.
+          <span>Next</span>
+          <span className="text-blue-500">Dash</span>
         </h1>
         <p className="text-slate-500 text-sm">
-          Manage your actions and activities
+        Demonstrating Next.js Power
         </p>
       </div>
 
       <div id="profile" className="px-6 py-10">
-        <p className="text-slate-500">Welcome back,</p>
+        <p className="text-slate-500 mb-2">Welcome back,</p>
         <a href="#" className="inline-flex space-x-2 items-center">
           <span>
             <Image
-              className="rounded-full w-8 h-8"
-              src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c"
+              className="rounded-full w-16 h-16"
+              src="/images/IMG20211019145547.jpg"
               alt="User avatar"
               width={50}
               height={50}

@@ -3,6 +3,7 @@ import React from 'react';
 import { SimpleWidget } from './SimpleWidget';
 import { useAppSelector } from '@/store';
 import { IoCartOutline } from 'react-icons/io5';
+import { FavoritePokemonsWidget } from '@/pokemons/components/FavoritePokemonsWidget';
 
 export const WidgetsGrid = () => {
 
@@ -17,6 +18,7 @@ export const WidgetsGrid = () => {
         icon={<IoCartOutline size={50} className='text-blue-500'/>}
         href='/dashboard/counter'
       />
+      <FavoritePokemonsWidget />
       
     </div>
   )

@@ -1,3 +1,4 @@
+import { HeaderBar } from "@/components/header/HeaderBar";
 import { PokemonGrid, PokemonsResponse, SimplePokemon } from "@/pokemons";
 import { notFound } from "next/navigation";
 
@@ -31,7 +32,11 @@ export default async function PokemonsPage() {
 
   return (
     <div className="flex flex-col px-2">
-      <span className="text-5xl my-2">Pokemon List <small className="text-blue-600">static</small></span>
+      <HeaderBar 
+        title="Pokemon List"
+        subTitle="Static Generated"
+        description="Welcome to the Pokemons section! This part of the dashboard showcases a list of Pokémon generated using server-side rendering (SSR). By fetching the data on the server and rendering it before sending the HTML to the client, this approach ensures fast load times and improved SEO. Explore the list to see how Next.js handles server-side data fetching and rendering, providing a smooth and efficient user experience."
+      />
       <PokemonGrid pokemons={pokemons}/>
     </div>
   );
