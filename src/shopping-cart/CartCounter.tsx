@@ -1,7 +1,6 @@
 'use client'
 import { useAppDispatch, useAppSelector } from "@/store";
 import { addOne, initCounterState, resetCount, substractOne } from "@/store/counter/counterSlice";
-import React, { useEffect } from "react";
 
 interface Props {
   value?: number
@@ -11,25 +10,23 @@ export interface CounterResponse {
   count: number;
 }
 
-const getApiCounter = async():Promise<CounterResponse> => {
-  const data = await fetch('/api/counter').then(resp => resp.json());
-  console.log(data);
-  return data
-}
-
+// !This function allows us to get the counter value from API request
+// const getApiCounter = async():Promise<CounterResponse> => {
+//   const data = await fetch('/api/counter').then(resp => resp.json());
+//   return data
+// }
 
 export const CartCounter = ({ value= 0 }: Props) => {
 
   const count = useAppSelector(state => state.counter.count);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    
-    getApiCounter().then(({count}) => dispatch(initCounterState(count)))
-    
-  }, [dispatch])
+  // !This useEffect allows to setup the counter using an API request
+  // useEffect(() => {
+  //   getApiCounter().then(({count}) => dispatch(initCounterState(count)))
+  // }, [dispatch])
   
-
+  //!This useEffect allow to setup the counter using the value from the parent component
   // useEffect(() => {
   //   dispatch(initCounterState(value))
   // }, [dispatch, value])

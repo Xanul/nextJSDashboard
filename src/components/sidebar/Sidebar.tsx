@@ -1,8 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { IoBrowsersOutline, IoCalculator, IoLogoReact, IoHeart } from "react-icons/io5";
+import { IoBrowsersOutline, IoCalculator, IoLogoReact, IoHeart, IoStorefrontOutline } from "react-icons/io5";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 import { CgPokemon } from "react-icons/cg";
+import { FaTasks } from "react-icons/fa";
+import { GrTask, GrTasks } from "react-icons/gr";
+import { LiaCookieBiteSolid } from "react-icons/lia";
 
 const menuItems = [
   {
@@ -28,7 +31,31 @@ const menuItems = [
     icon: <IoHeart size={30} />,
     title: 'Favorites',
     subTitle: 'Global State'
-  }
+  },
+  // {
+  //   path: '/dashboard/todos',
+  //   icon: <FaTasks size={30}/>,
+  //   title: `To-Do's`,
+  //   subTitle: 'REST Todos'
+  // },
+  {
+    path: '/dashboard/server-todos',
+    icon: <FaTasks size={30} />,
+    title: `Server To-Do's`,
+    subTitle: 'Server Actions'
+  },
+  // {
+  //   path: '/dashboard/cookies'  ,
+  //   icon: <LiaCookieBiteSolid size={30}/>,
+  //   title: `Cookies`,
+  //   subTitle: 'Using Cookies'
+  // },
+  {
+    path: '/dashboard/store'  ,
+    icon: <IoStorefrontOutline size={30}/>,
+    title: `Store`,
+    subTitle: 'Using Cookies'
+  },
 ]
 
 export const Sidebar = () => {
