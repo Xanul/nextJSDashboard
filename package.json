@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prisma:migrate:prod && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:migrate:prod": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
