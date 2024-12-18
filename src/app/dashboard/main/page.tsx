@@ -1,6 +1,9 @@
+import { auth } from "@/app/auth";
 import { SimpleWidget, WidgetsGrid } from "@/components";
+import { WidgetItem } from "@/components/dashboard/WidgetItem";
 import { HeaderBar } from "@/components/header/HeaderBar";
 import { Product, ProductInCart, products } from "@/products/data/products";
+
 import { cookies } from "next/headers";
 
 export const metadata = {
@@ -8,26 +11,24 @@ export const metadata = {
   description: "Main Dashboard",
 };
 
-const getProductsInCart = ():ProductInCart[] => {
-
+const getProductsInCart = (): ProductInCart[] => {
   const cookiesCart = cookies();
-  const cart = JSON.parse(cookiesCart.get('cart')?.value ?? '{}');
+  const cart = JSON.parse(cookiesCart.get("cart")?.value ?? "{}");
   const productsInCart = [];
-  
+
   for (const id of Object.keys(cart)) {
-    const product = products.find(prod => prod.id === id)
-    if ( product ) {
-      productsInCart.push({product: product, quantity: cart[id]})
+    const product = products.find((prod) => prod.id === id);
+    if (product) {
+      productsInCart.push({ product: product, quantity: cart[id] });
     }
   }
 
   return productsInCart;
+};
 
-}
-
-export default function MainPage() {
-  
+export default async function MainPage() {
   getProductsInCart();
+
   return (
     <div>
       <HeaderBar
@@ -35,6 +36,7 @@ export default function MainPage() {
         subTitle="General Info"
         description="Welcome to the NextDash dashboard! This project is designed to showcase the diverse functionalities of Next.js, including server-side rendering, client-side rendering, and global state management using Redux. Explore how these features enhance the performance, efficiency, and user experience of web applications, providing a comprehensive demonstration of Next.js capabilities."
       />
+
       <WidgetsGrid cart={getProductsInCart()} />
     </div>
   );

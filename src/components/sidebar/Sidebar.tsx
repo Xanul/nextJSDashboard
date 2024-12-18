@@ -1,36 +1,46 @@
 import Image from "next/image";
 import React from "react";
-import { IoBrowsersOutline, IoCalculator, IoLogoReact, IoHeart, IoStorefrontOutline } from "react-icons/io5";
+import {
+  IoBrowsersOutline,
+  IoCalculator,
+  IoLogoReact,
+  IoHeart,
+  IoStorefrontOutline,
+  IoPerson,
+  IoPersonOutline,
+  IoHeartOutline,
+} from "react-icons/io5";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 import { CgPokemon } from "react-icons/cg";
 import { FaTasks } from "react-icons/fa";
 import { GrTask, GrTasks } from "react-icons/gr";
 import { LiaCookieBiteSolid } from "react-icons/lia";
+import { auth } from "@/app/auth";
 
 const menuItems = [
   {
-    path: '/dashboard/main',
-    icon: <IoBrowsersOutline size={30}/>,
-    title: 'Dashboard',
-    subTitle: 'Main'
+    path: "/dashboard/main",
+    icon: <IoBrowsersOutline size={30} />,
+    title: "Dashboard",
+    subTitle: "Main",
   },
   {
-    path: '/dashboard/counter',
-    icon: <IoCalculator size={30}/>,
-    title: 'Counter',
-    subTitle: 'Client Side Counter'
+    path: "/dashboard/counter",
+    icon: <IoCalculator size={30} />,
+    title: "Counter",
+    subTitle: "Client Side Counter",
   },
   {
-    path: '/dashboard/pokemons',
-    icon: <CgPokemon size={30}/>,
-    title: 'Pokemon',
-    subTitle: 'Static Generated'
+    path: "/dashboard/pokemons",
+    icon: <CgPokemon size={30} />,
+    title: "Pokemon",
+    subTitle: "Static Generated",
   },
   {
-    path: '/dashboard/favorites',
-    icon: <IoHeart size={30} />,
-    title: 'Favorites',
-    subTitle: 'Global State'
+    path: "/dashboard/favorites",
+    icon: <IoHeartOutline size={30} />,
+    title: "Favorites",
+    subTitle: "Global State",
   },
   // {
   //   path: '/dashboard/todos',
@@ -39,10 +49,10 @@ const menuItems = [
   //   subTitle: 'REST Todos'
   // },
   {
-    path: '/dashboard/server-todos',
+    path: "/dashboard/server-todos",
     icon: <FaTasks size={30} />,
     title: `Server To-Do's`,
-    subTitle: 'Server Actions'
+    subTitle: "Server Actions",
   },
   // {
   //   path: '/dashboard/cookies'  ,
@@ -51,14 +61,26 @@ const menuItems = [
   //   subTitle: 'Using Cookies'
   // },
   {
-    path: '/dashboard/store'  ,
-    icon: <IoStorefrontOutline size={30}/>,
+    path: "/dashboard/store",
+    icon: <IoStorefrontOutline size={30} />,
     title: `Store`,
-    subTitle: 'Using Cookies'
+    subTitle: "Using Cookies",
   },
-]
+  {
+    path: "/profile",
+    icon: <IoPersonOutline size={30} />,
+    title: `User Profile`,
+    subTitle: "User Information",
+  },
+];
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await auth();
+
+  const userName = session?.user?.name ?? "User";
+  const userImage = session?.user?.image ?? "/images/IMG20211019145547.jpg";
+  // const userRole = session?.user?.role ?? "User";
+
   return (
     <div
       id="menu"
@@ -71,9 +93,7 @@ export const Sidebar = () => {
           <span>Next</span>
           <span className="text-blue-500">Dash</span>
         </h1>
-        <p className="text-slate-500 text-sm">
-        Demonstrating Next.js Power
-        </p>
+        <p className="text-slate-500 text-sm">Demonstrating Next.js Power</p>
       </div>
 
       <div id="profile" className="px-6 py-10">
@@ -82,25 +102,23 @@ export const Sidebar = () => {
           <span>
             <Image
               className="rounded-full w-16 h-16"
-              src="/images/IMG20211019145547.jpg"
+              src={userImage}
               alt="User avatar"
               width={50}
               height={50}
             />
           </span>
-          <span className="text-sm md:text-base font-bold">Rodrigo Rivas</span>
+          <span className="text-sm md:text-base font-bold">{userName}</span>
         </a>
       </div>
       {/* Navbar */}
       <div id="nav" className="w-full px-6">
         {/* Primer item */}
 
-        {
-          menuItems.map(item =>(
-            <SidebarMenuItem key={item.path} {...item}/>
-          ))
-        }
-        
+        {menuItems.map((item) => (
+          <SidebarMenuItem key={item.path} {...item} />
+        ))}
+
         {/* Segundo Item */}
         {/* <a
           href="#"
